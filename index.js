@@ -21,7 +21,7 @@ const userData = [
 
 // 1
 const totalBalance = userData.reduce((sum, user) => sum + user.balance, 0);
-console.log("Загальна сума балансу:", totalBalance);
+console.log("Повна сума балансу:", totalBalance);
 
 // 2
 const getUsersWithFriend = (friendName) => {
@@ -36,7 +36,7 @@ const sortedByFriends = userData
     .slice()
     .sort((a, b) => b.friends.length - a.friends.length)
     .map(user => user.name);
-console.log("Імена, відсортовані за кількістю друзів:", sortedByFriends);
+console.log("Імена відсортовані за кількістю друзів:", sortedByFriends);
 
 // 4
 const uniqueSkills = userData
