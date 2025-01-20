@@ -20,33 +20,24 @@ const userData = [
 ];
 
 // 1
-const totalBalance = userData.reduce((sum, user) => sum + user.balance, 0);
-console.log("Повна сума балансу:", totalBalance);
+const balances = userData.map(user => user.balance);
+const totalBalance = balances.reduce((sum, balance) => sum + balance, 0);
+console.log("Вся сума балансу:", totalBalance);
 
 // 2
 const getUsersWithFriend = (friendName) => {
-    return userData
-        .filter(user => user.friends.includes(friendName))
-        .map(user => user.name);
+    const usersWithFriend = userData.filter(user => user.friends.includes(friendName));
+    return usersWithFriend.map(user => user.name);
 };
-console.log("Імена користувачів з другом John:", getUsersWithFriend("John"));
+console.log("Імена людей з другом John:", getUsersWithFriend("John"));
 
 // 3
-const sortedByFriends = userData
-    .slice()
+const sortedByFriends = [...userData]
     .sort((a, b) => b.friends.length - a.friends.length)
     .map(user => user.name);
 console.log("Імена відсортовані за кількістю друзів:", sortedByFriends);
 
 // 4
-const uniqueSkills = userData
-    .reduce((skills, user) => {
-        user.skills.forEach(skill => {
-            if (!skills.includes(skill)) {
-                skills.push(skill);
-            }
-        });
-        return skills;
-    }, [])
-    .sort();
+const allSkills = userData.flatMap(user => user.skills);
+const uniqueSkills = [...new Set(allSkills)].sort();
 console.log("Унікальні вміння:", uniqueSkills);
